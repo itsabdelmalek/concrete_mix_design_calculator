@@ -14,4 +14,11 @@ EXPOSURE_CONDITIONS_TABLE = {
     "Extreme": [360, 0.40]
 }
 
+# ACI | "Grade": Assumed Standard Deviation
+GRADE_STANDARD_DEVIATION_TABLE = {
+    "M1": 3.5,
+    "M2": 4.0,
+    "M3_5": 5.0
+}
+
 
