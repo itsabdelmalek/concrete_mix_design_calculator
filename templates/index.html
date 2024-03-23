@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concrete Mix Design Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/h.css">
     <script>
         function toggleFlyAshInput() {
             var additionsType = document.getElementById('additions_type').value;
@@ -15,89 +17,265 @@
                 flyAshInput.style.display = 'none';
             }
         }
-    </script>
+    </script>   
 </head>
 <body>
-    <h1>Concrete Mix Design Calculator</h1>
-    <form action="/calculate" method="post">
-	<label for="grade">Grade Designations (e.g., M 25): </label>
-        <select name="grade">
-            <option value="M 10">M 10</option>
-            <option value="M 15">M 15</option>
-            <option value="M 20">M 20</option>
-            <option value="M 25">M 25</option>
-            <option value="M 30">M 30</option>
-            <option value="M 35">M 35</option>
-            <option value="M 40">M 40</option>
-            <option value="M 45">M 45</option>
-            <option value="M 50">M 50</option>
-        </select><br>
-	<label for="additions_type">Mineral Additions Type:</label>
-        <select name="additions_type" id="additions_type" onchange="toggleFlyAshInput()">
-            <option value="">None</option>
-            <option value="Fly ash">Fly ash</option>
-        </select><br>
-	<label for="max_aggregate_size">Maximum Nominal Size of Coarse Aggregate in mm: </label>
-        <select name="max_aggregate_size">
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="40">40</option>
-        </select><br>
-	<label for="slump">Consistency (Slump) Desired in mm: </label>
-        <input type="text" name="slump" required><br>
-	<label for="exposure_conditions">Exposure Conditions:</label>
-        <select name="exposure_conditions">
-            <option value="Mild">Mild</option>
-            <option value="Moderate">Moderate</option>
-            <option value="Severe">Severe</option>
-            <option value="Very severe">Very severe</option>
-            <option value="Extreme">Extreme</option>
-        </select><br>
-	<label for="pouring_method">Will the concrete be pumped ? (yes or no): </label>
-        <select name="pouring_method">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select><br>
-	<label for="type_agg">Type and shape of Aggregates:</label>
-        <select name="type_agg">
-            <option value="sub-angular">Sub-angular</option>
-            <option value="gravel">Gravel</option>
-            <option value="rounded gravel">Rounded gravel</option>
-            <option value="crushed gravel">Crushed gravel</option>
-        </select><br>
-	<label for="admixture">Type of chemical Admixture Used:</label>
-        <select name="admixture">
-            <option value="Plasticizer">Plasticizer</option>
-            <option value="Super Plasticizer">Super Plasticizer</option>
-        </select><br>
-	<label for="sp_cement">Specific Gravity of Cement: </label>
-        <input type="text" name="sp_cement" required><br>
-	<div id="fly_ash_input" style="display: none;">
-            <label for="sp_fly_ash">Specific Gravity of Fly Ash: </label>
-            <input type="text" name="sp_fly_ash" id="sp_fly_ash"><br>
+    <header>
+        <div class="logo">
+            <img src="../static/images/logo.png" alt="Logo">
         </div>
-	<label for="sp_coarse_agg">Specific Gravity of Coarse Aggregate: </label>
-        <input type="text" name="sp_coarse_agg" required><br>
-	<label for="sp_fine_agg">Specific Gravity of Fine Aggregate: </label>
-        <input type="text" name="sp_fine_agg" required><br>
-	<label for="sp_admixture">Specific Gravity of Admixture: </label>
-        <input type="text" name="sp_admixture" required><br>
-	<label for="ca_water_absorption">Water Absorption of Coarse Aggregates (%): </label>
-        <input type="text" name="ca_water_absorption" required><br>
-	<label for="fa_water_absorption">Water Absorption of Fine Aggregates (%): </label>
-        <input type="text" name="fa_water_absorption" required><br>
-	<label for="fa_zone">Grading Zone of Fine Aggregates: </label>
-        <select name="fa_zone">
-            <option value="Zone 1">Zone 1</option>
-            <option value="Zone 2">Zone 2</option>
-            <option value="Zone 3">Zone 3</option>
-            <option value="Zone 4">Zone 4</option>
-        </select><br>
-	<label for="ca_surface_moisture">Surface Moisture of Coarse Aggregates (%): </label>
-        <input type="text" name="ca_surface_moisture" required><br>
-	<label for="fa_surface_moisture">Surface Moisture of Fine Aggregates (%): </label>
-        <input type="text" name="fa_surface_moisture" required><br>
-	<button type="submit">Calculate</button>
-    </form>
+        <div class="title-container">
+                <h1>Welcome to Concrete Mix Design Calculator</h1>
+                <p>This calculator helps you determine the proper proportions of materials required to achieve the desired strength and characteristics in your concrete mix.</p>
+        </div>
+    </header>
+    <div class="introduction">
+        <h2>What is concrete?</h2>
+        <p>Concrete is a composite material composed of cement, fine aggregates (such as sand), coarse aggregates (such as gravel or crushed stone), and water.</p>
+        <p>The main ingredients of concrete are:</p>
+        <ul>
+            <li><strong>Cement:</strong> A binding agent that reacts chemically with water to form a hard matrix.</li>
+            <li><strong>Aggregates:</strong> Provide bulk, strength, and stability to the concrete mixture. Fine aggregates fill the space between coarse aggregates and cement paste, while coarse aggregates act as fillers.</li>
+            <li><strong>Water:</strong> Provides workability to the concrete mix and initiates the chemical reaction between cement and aggregates.</li>
+        </ul>
+    </div>
+    <div class="main-container">
+        <div class="left-section">
+            <h2>What is concrete mix design?</h2>
+            <p>Concrete mix design is the process of finding the right proportions of cement, sand, and aggregates for concrete to achieve the target strength in structures. It involves various steps, calculations, and laboratory testing to find the right mix proportions. This process is usually adopted for structures that require higher grades of concrete such as M25 and above and large construction projects where the quantity of concrete consumption is huge.</p>
+            <p>Benefits of concrete mix design include providing the right proportions of materials, making the construction economical in achieving the required strength of structural members. As the quantity of concrete required for large constructions is huge, economy in the quantity of materials such as cement makes the project construction economical. Concrete mix design of M20, M25, M30, and higher grades of concrete can be calculated.</p>
+            <img src="../static/images/concrete.jpg" alt="Concrete">
+        </div>
+        <div class="right-section">
+            <h1>Concrete Mix Design Calculator</h1>
+            <form action="/calculate" method="post" onsubmit="return validateForm()">
+                <label for="grade">Grade Designations (e.g., M 25): 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                            Grade designations represent the compressive strength of concrete after 28 days. For example, M 25 indicates concrete with a characteristic compressive strength of minimum 25 MPa.
+                        </div>
+                    </div>
+                </label>
+                <select name="grade">
+                    <option value="M 10">M 10</option>
+                    <option value="M 15">M 15</option>
+                    <option value="M 20">M 20</option>
+                    <option value="M 25">M 25</option>
+                    <option value="M 30">M 30</option>
+                    <option value="M 35">M 35</option>
+                    <option value="M 40">M 40</option>
+                    <option value="M 45">M 45</option>
+                    <option value="M 50">M 50</option>
+                </select><br>
+
+                <label for="additions_type">Mineral Additions Type: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Mineral additions such as fly ash can be added to concrete mixes to improve properties such as workability and durability.
+                        </div>
+                    </div>
+                </label>
+                <select name="additions_type" id="additions_type" onchange="toggleFlyAshInput()">
+                    <option value="">None</option>
+                    <option value="Fly ash">Fly ash</option>
+                </select><br>
+
+                <label for="max_aggregate_size">Maximum Nominal Size of Coarse Aggregate in mm: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Maximum nominal size refers to the largest sieve size that allows the passage of aggregate particles. It affects the workability and strength of concrete.
+                        </div>
+                    </div>
+                </label>
+                <select name="max_aggregate_size">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="40">40</option>
+                </select><br>
+
+                <label for="slump">Consistency (Slump) Desired in mm: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Slump test measures the consistency of fresh concrete. It indicates the flow and workability of the concrete mix.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="slump" required><br>
+
+                <label for="exposure_conditions">Exposure Conditions: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Exposure conditions refer to the environment in which the concrete will be placed and the degree of exposure to aggressive agents such as chemicals, weather, and abrasion.
+                        </div>
+                    </div>
+                </label>
+                <select name="exposure_conditions">
+                    <option value="Mild">Mild</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Severe">Severe</option>
+                    <option value="Very severe">Very severe</option>
+                    <option value="Extreme">Extreme</option>
+                </select><br>
+
+                <label for="pouring_method">Will the concrete be pumped ? (yes or no): 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Indicate whether the concrete will be pumped into place or poured manually. Pumping can affect the workability and consistency of the mix.
+                        </div>
+                    </div>
+                </label>
+                <select name="pouring_method">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br>
+
+                <label for="type_agg">Type and shape of Aggregates: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Choose the type and shape of aggregates used in the concrete mix. This can include sub-angular, gravel, rounded gravel, crushed gravel, etc.
+                        </div>
+                    </div>
+                </label>
+                <select name="type_agg">
+                    <option value="sub-angular">Sub-angular</option>
+                    <option value="gravel">Gravel</option>
+                    <option value="rounded gravel">Rounded gravel</option>
+                    <option value="crushed gravel">Crushed gravel</option>
+                </select><br>
+
+                <label for="admixture">Type of chemical Admixture Used: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Select the type of chemical admixture used in the concrete mix, such as plasticizer or superplasticizer, which can improve workability and performance.
+                        </div>
+                    </div>
+                </label>
+                <select name="admixture">
+                    <option value="Plasticizer">Plasticizer</option>
+                    <option value="Super Plasticizer">Super Plasticizer</option>
+                </select><br>
+
+                <label for="sp_cement">Specific Gravity of Cement: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Specific gravity is the ratio of the density of a substance to the density of a reference substance. The specific gravity of cement is usually arround 3.15.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="sp_cement" required><br>
+
+                <div id="fly_ash_input" style="display: none;">
+                    <label for="sp_fly_ash">Specific Gravity of Fly Ash: 
+                        <div class="tooltip-container">
+                            <i class="tooltip fas fa-info-circle"></i>
+                            <div class="tooltip-text">
+                            Fly ash is a byproduct of coal combustion and is often used as a supplementary cementitious material in concrete mixes. the specific gravity of fly ash is usually arround 2.2.
+                            </div>
+                        </div>
+                    </label>
+                    <input type="text" name="sp_fly_ash" id="sp_fly_ash"><br>
+                </div>
+
+                <label for="sp_coarse_agg">Specific Gravity of Coarse Aggregate: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        The specific gravity is a measure of density compared to water and it may vary depending on the type and source of the aggregate, and is typically in the range of 2.4 to 2.9.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="sp_coarse_agg" required><br>
+
+                <label for="sp_fine_agg">Specific Gravity of Fine Aggregate: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                            The specific gravity is a measure of density compared to water and it may vary depending on the type and source of the aggregate, and is typically in the range of 2.5 to 3.0.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="sp_fine_agg" required><br>
+
+                <label for="sp_admixture">Specific Gravity of Admixture: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                            The specific gravity is a measure of density compared to water, usually arround 1.07 - 1.10. (the usual dosage of admixture on these trials is 1.2%)
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="sp_admixture" required><br>
+
+                <label for="ca_water_absorption">Water Absorption of Coarse Aggregates (%): 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Water absorption is the amount of water absorbed by the aggregate particles. It can affect the workability and strength of concrete mixes.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="ca_water_absorption" required><br>
+
+                <label for="fa_water_absorption">Water Absorption of Fine Aggregates (%): 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Water absorption is the amount of water absorbed by the aggregate particles. It can affect the workability and strength of concrete mixes.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="fa_water_absorption" required><br>
+
+                <label for="fa_zone">Grading Zone of Fine Aggregates: 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Grading zone refers to the particle size distribution of fine aggregates based on the percentage passing through certain sieve sizes.
+                        </div>
+                    </div>
+                </label>
+                <select name="fa_zone">
+                    <option value="Zone 1">Zone 1</option>
+                    <option value="Zone 2">Zone 2</option>
+                    <option value="Zone 3">Zone 3</option>
+                    <option value="Zone 4">Zone 4</option>
+                </select><br>
+
+                <label for="ca_surface_moisture">Surface Moisture of Coarse Aggregates (%): 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Surface moisture is the moisture content present on the surface of coarse aggregates. It can affect the workability and water-cement ratio of concrete.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="ca_surface_moisture" required><br>
+
+                <label for="fa_surface_moisture">Surface Moisture of Fine Aggregates (%): 
+                    <div class="tooltip-container">
+                        <i class="tooltip fas fa-info-circle"></i>
+                        <div class="tooltip-text">
+                        Surface moisture is the moisture content present on the surface of fine aggregates. It can affect the workability and water-cement ratio of concrete.
+                        </div>
+                    </div>
+                </label>
+                <input type="text" name="fa_surface_moisture" required><br>
+
+                <button type="submit">Calculate</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Concrete Mix Design Calculator
+    </footer>
 </body>
 </html>
