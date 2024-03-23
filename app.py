@@ -274,4 +274,11 @@ def calculate():
     ca_surface_moisture = float(request.form['ca_surface_moisture'])
     fa_surface_moisture = float(request.form['fa_surface_moisture'])
 
+    w_c_r = water_cement_ratio(exposure_conditions)
+    w_content = max_water_content(slump, max_aggregate_size, type_agg, admixture)
+    cement_c = cement_content(exposure_conditions, w_c_r, w_content)
+    cement_fa_c, fly_ash_c, c_reduced, corrected_w_c_r, flya_percentage = cement_flyAsh_content(exposure_conditions, w_c_r, w_content)
+    target_strength = target_compressive_strength(grade)
+    CA_vol, FA_vol = total_aggregate_volume(fa_zone, max_aggregate_size, w_c_r, pouring_method == 'yes')
+
 
