@@ -17,7 +17,20 @@
                 flyAshInput.style.display = 'none';
             }
         }
-    </script>   
+    </script>
+    <script>
+        function validateForm() {
+            var inputs = document.querySelectorAll('input[type="text"]');
+            for (var i = 0; i < inputs.length; i++) {
+                if (isNaN(inputs[i].value)) {
+                    alert("Please enter valid numbers for all fields.");
+                    inputs[i].focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <header>
