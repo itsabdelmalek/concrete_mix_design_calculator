@@ -347,4 +347,18 @@ def calculate():
             'mix_proportions': mix_proportions
         }
 
+    ca_water_absorption_correction = ca_water_absorption * CA_mass * 0.01
+    fa_water_absorption_correction = fa_water_absorption * FA_mass * 0.01
+
+    ca_surface_moisture_correction = ca_surface_moisture * CA_mass * 0.01
+    fa_surface_moisture_correction = fa_surface_moisture * FA_mass * 0.01
+
+    free_total_water = w_content + ca_water_absorption_correction + fa_water_absorption_correction - ca_surface_moisture_correction - fa_surface_moisture_correction
+  
+    output['ca_water_absorption_correction'] = round(ca_water_absorption_correction, 1)
+    output['fa_water_absorption_correction'] = round(fa_water_absorption_correction, 1)
+    output['ca_surface_moisture_correction'] = round(ca_surface_moisture_correction, 1)
+    output['fa_surface_moisture_correction'] = round(fa_surface_moisture_correction, 1)
+    output['free_total_water'] = round(free_total_water, 1)
+
 
