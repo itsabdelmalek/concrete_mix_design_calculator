@@ -21,4 +21,7 @@ GRADE_STANDARD_DEVIATION_TABLE = {
     "M3_5": 5.0
 }
 
+# ACI | "Nominal Maximum Size Of Aggregate in mm": Maximum Water content in kg
+MAX_WATER_CONTENT_TABLE = {"10": 208, "20": 186, "40": 165}
+
 
