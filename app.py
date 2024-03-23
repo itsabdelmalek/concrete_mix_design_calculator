@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Simple flask API for concrete mix design."""
 
-from flask import Flask
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -361,4 +361,7 @@ def calculate():
     output['fa_surface_moisture_correction'] = round(fa_surface_moisture_correction, 1)
     output['free_total_water'] = round(free_total_water, 1)
 
+    return render_template('output.html', output=output)
 
+if __name__ == '__main__':
+    app.run(port=8000)
