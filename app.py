@@ -314,4 +314,37 @@ def calculate():
             'mix_proportions': mix_proportions
         }
 
+    else:
+        sp_fly_ash = None
+        c_vol = (cement_c / sp_cement) * 0.001
+        fly_ash_c = 0
+        fly_ash_vol = 0
+        c_reduced = 0
+        w_vol = w_content * 0.001
+        admixture_mass = cement_c * 0.012
+        admixture_volume = (admixture_mass / sp_admixture) * 0.001
+        total_agg_vol = (1 - (c_vol + fly_ash_vol + w_vol + admixture_volume))
+        FA_mass = total_agg_vol * FA_vol * sp_fine_agg * 1000
+        CA_mass = total_agg_vol * CA_vol * sp_coarse_agg * 1000
+        mix_proportions = {
+            'Cement': round(cement_c, 1),
+            'Water': round(w_content, 1),
+            'Fine aggregate': round(FA_mass, 1),
+            'Coarse aggregate': round(CA_mass, 1),
+            'Admixture': round(admixture_mass, 2),
+            'Water cement ratio': round(w_c_r, 2)
+        }
+        output = {
+            'target_strength': round(target_strength, 2),
+            'volume_coarse_aggregate': round(CA_vol, 2),
+            'volume_fine_aggregate': round(FA_vol, 2),
+            'volume_cement': round(c_vol, 2),
+            'volume_water': round(w_vol, 2),
+            'volume_admix': round(admixture_volume, 3),
+            'cement_reduced': 0,
+            'fly_ash_percentage': None,
+            'volume_total_aggregate': round(total_agg_vol, 2),
+            'mix_proportions': mix_proportions
+        }
+
 
