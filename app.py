@@ -41,4 +41,9 @@ def target_compressive_strength(grade):
         g = "M3_5"
     return int(grade.replace("M ", '')) + (1.65 * GRADE_STANDARD_DEVIATION_TABLE.get(g, 0))
 
+def water_cement_ratio(exposure):
+    """Calculate water cement ratio."""
+    exp = exposure.capitalize()
+    return EXPOSURE_CONDITIONS_TABLE.get(exp, [0, 0])[1]
+
 
