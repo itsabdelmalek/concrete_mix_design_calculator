@@ -65,4 +65,11 @@ def max_water_content(slump, s_a, type_agg, admixture):
         w_content -= w_content * 0.1
     return w_content
 
+def cement_content(exposure, w_c_r, w_c):
+    """Calculate cement content."""
+    exp = exposure.capitalize()
+    min_c_c = EXPOSURE_CONDITIONS_TABLE.get(exp, [0, 0])[0]
+    c_content = w_c / w_c_r
+    return max(c_content, min_c_c)
+
 
