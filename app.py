@@ -72,4 +72,38 @@ def cement_content(exposure, w_c_r, w_c):
     c_content = w_c / w_c_r
     return max(c_content, min_c_c)
 
+def cement_flyAsh_content(exposure, w_c_r, w_content):
+    """Calculate cement and fly ash content."""
+    exp = exposure.capitalize()
+    for a, b in EXPOSURE_CONDITIONS_TABLE.items():
+        if a == exp:
+            min_c_c = b[0]
+    c_content = w_content / w_c_r
+    t1 = c_content
+    if c_content < min_c_c:
+        c_content = min_c_c
+        t1 = c_content
+    c_content *= 1.10
+    corrected_w_c_r = w_content / c_content
+    flyA_content = c_content * 0.3
+    t2 = c_content
+    t2 -= flyA_content
+    i = 0.25
+    if t2 < 270:
+        while True and i > 0:
+            t2 = c_content
+            flyA_content = c_content * i
+            t2 -= flyA_content
+            i -= 0.05
+            if t2 >= 270:
+                flya_percentage = int((i+0.05)*100)
+                break
+            elif i < 0:
+                return None, None, None, None, None
+    else:
+        flya_percentage = int((i+0.05)*100)
+    c_content = t2
+    c_reduced = t1 - c_content
+    return c_content, flyA_content, c_reduced, corrected_w_c_r, flya_percentage
+
 
