@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculation Results</title>
+</head>
+<body>
+    <h1>Calculation Results</h1>
+    <div>
+        <h2>Target Compressive Strength at 28 days</h2>
+        <p>{{ output.target_strength }} MPa</p>
+    </div>
+    <div>
+        <h2>Volume Informations per cubic meter</h2>
+        <ul>
+            <li>Volume of Coarse Aggregate: {{ output.volume_coarse_aggregate }}</li>
+            <li>Volume of Fine Aggregate: {{ output.volume_fine_aggregate }}</li>
+            <li>Volume of Cement: {{ output.volume_cement }}</li>
+            {% if output.volume_fly_ash %}
+            <li>Volume of Fly Ash: {{ output.volume_fly_ash }}</li>
+            {% endif %}
+            {% if output.fly_ash_percentage is not none %}
+            <li>Fly Ash Percentage: {{ output.fly_ash_percentage }} %</li>
+            {% endif %}
+            <li>Volume of Water: {{ output.volume_water }}</li>
+            {% if output.volume_fly_ash %}
+            <li>Cement Reduced: {{ output.cement_reduced }} kg</li>
+            {% endif %}
+            <li>Volume of Admixture: {{ output.volume_admix }}</li>
+            <li>Volume of Total Aggregate: {{ output.volume_total_aggregate }}</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Theorotical Mix Proportions per cubic meter</h2>
+        <ul>
+            <li>Cement: {{ output.mix_proportions.Cement }} kg</li>
+            {% if output.volume_fly_ash %}
+            <li>Fly Ash: {{ output.mix_proportions['Fly ash'] }} kg</li>
+            {% endif %}
+            <li>Water: {{ output.mix_proportions['Water'] }} L</li>
+            <li>Fine Aggregate: {{ output.mix_proportions['Fine aggregate'] }} kg</li>
+            <li>Coarse Aggregate: {{ output.mix_proportions['Coarse aggregate'] }} kg</li>
+            <li>Admixture: {{ output.mix_proportions['Admixture'] }} kg</li>
+            <li>Water Cement Ratio: {{ output.mix_proportions['Water cement ratio'] }}</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Total Water Correction</h2>
+        <ul>
+            <li>Coarse Aggregate Water Absorption Correction: {{ output.ca_water_absorption_correction }} L</li>
+            <li>Fine Aggregate Water Absorption Correction: {{ output.fa_water_absorption_correction }} L</li>
+            <li>Coarse Aggregate Surface Moisture Correction: {{ output.ca_surface_moisture_correction }} L</li>
+            <li>Fine Aggregate Surface Moisture Correction: {{ output.fa_surface_moisture_correction }}</li>
+            <li>The Final Total Water in the mix: {{ output.free_total_water }} L</li>
+        </ul>
+    </div> 
+    <a href="/">Go back to the calculator</a>
+</body>
+</html>
