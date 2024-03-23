@@ -106,4 +106,18 @@ def cement_flyAsh_content(exposure, w_c_r, w_content):
     c_reduced = t1 - c_content
     return c_content, flyA_content, c_reduced, corrected_w_c_r, flya_percentage
 
+def total_aggregate_volume(zone, s_a, w_c_r, pumping):
+    """Calculate volume of coarse and fine aggregate."""
+    s_a_str = str(int(s_a))  # Convert s_a to string
+    i = {"Zone 4": 0, "Zone 3": 1, "Zone 2": 2, "Zone 1": 3}.get(zone, 0)
+    CA_vol = COARSE_AGGREGATE_VOLUME_TABLE.get(s_a_str, [])[i]
+    if w_c_r > 0.5:
+        CA_vol -= 0.01 * ((w_c_r - 0.5) / 0.05)
+    else:
+        CA_vol += 0.01 * ((0.5 - w_c_r) / 0.05)
+    if pumping:
+        CA_vol *= 0.9
+    FA_vol = 1 - CA_vol
+    return CA_vol, FA_vol
+
 
