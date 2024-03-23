@@ -24,4 +24,11 @@ GRADE_STANDARD_DEVIATION_TABLE = {
 # ACI | "Nominal Maximum Size Of Aggregate in mm": Maximum Water content in kg
 MAX_WATER_CONTENT_TABLE = {"10": 208, "20": 186, "40": 165}
 
+# ACI | "Nominal Maximum Size Of Aggregate in mm": (vol of coarse aggregates)[Zone 4, Zone 3, Zone 2, Zone 1]
+COARSE_AGGREGATE_VOLUME_TABLE = {
+    "10": [0.50, 0.48, 0.46, 0.44],
+    "20": [0.66, 0.64, 0.62, 0.60],
+    "40": [0.75, 0.73, 0.71, 0.69]
+}
+
 
