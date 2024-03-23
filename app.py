@@ -31,4 +31,14 @@ COARSE_AGGREGATE_VOLUME_TABLE = {
     "40": [0.75, 0.73, 0.71, 0.69]
 }
 
+def target_compressive_strength(grade):
+    """Calculate target compressive strength."""
+    if grade == "M 10" or grade == "M 15":
+        g = "M1"
+    elif grade == "M 20" or grade == "M 25":
+        g = "M2"
+    else:
+        g = "M3_5"
+    return int(grade.replace("M ", '')) + (1.65 * GRADE_STANDARD_DEVIATION_TABLE.get(g, 0))
+
 
