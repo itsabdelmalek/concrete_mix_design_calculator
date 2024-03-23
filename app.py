@@ -120,4 +120,9 @@ def total_aggregate_volume(zone, s_a, w_c_r, pumping):
     FA_vol = 1 - CA_vol
     return CA_vol, FA_vol
 
+# Define route for the index page
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 
