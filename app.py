@@ -46,4 +46,23 @@ def water_cement_ratio(exposure):
     exp = exposure.capitalize()
     return EXPOSURE_CONDITIONS_TABLE.get(exp, [0, 0])[1]
 
+def max_water_content(slump, s_a, type_agg, admixture):
+    """Calculate maximum water content."""
+    s_a_str = str(int(s_a))  # Convert s_a to string
+    n = (int(slump) - 50) / 25
+    w_content = MAX_WATER_CONTENT_TABLE.get(s_a_str, 0)
+    if type_agg == "sub-angular":
+        w_content -= 10
+    elif type_agg == "gravel":
+        w_content -= 20
+    elif type_agg == "rounded gravel":
+        w_content -= 25
+    if int(slump) > 50:
+        w_content += (0.03 * n * w_content)
+    if admixture == "Super Plasticizer":
+        w_content -= w_content * 0.2
+    elif admixture == "Plasticizer":
+        w_content -= w_content * 0.1
+    return w_content
+
 
