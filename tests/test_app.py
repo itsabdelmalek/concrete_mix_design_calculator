@@ -3,6 +3,7 @@ import unittest
 from app import (
     target_compressive_strength,
     water_cement_ratio,
+    max_water_content,
 )
 
 
@@ -25,6 +26,14 @@ class TestConcreteMixDesign(unittest.TestCase):
         self.assertEqual(water_cement_ratio("Severe"), 0.45)
         self.assertEqual(water_cement_ratio("Very severe"), 0.45)
         self.assertEqual(water_cement_ratio("Extreme"), 0.40)
+
+    def test_max_water_content(self):
+        """Test maximum water content calculation with specific parameters."""
+        result = max_water_content(150, 20, "sub-angular", "Plasticizer")
+        # Adjusted expected result with a tolerance of 0.1
+        expected_result = 177.4
+        tolerance = 0.1
+        self.assertAlmostEqual(result, expected_result, delta=tolerance)
 
 if __name__ == "__main__":
     unittest.main()
