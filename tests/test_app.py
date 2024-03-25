@@ -4,6 +4,7 @@ from app import (
     target_compressive_strength,
     water_cement_ratio,
     max_water_content,
+    cement_content,
 )
 
 
@@ -34,6 +35,12 @@ class TestConcreteMixDesign(unittest.TestCase):
         expected_result = 177.4
         tolerance = 0.1
         self.assertAlmostEqual(result, expected_result, delta=tolerance)
+    
+    def test_cement_content(self):
+        """Test cement content calculation for exposure and water/cement ratio."""
+        result = cement_content("Moderate", 0.50, 150)
+        expected_result = 300
+        self.assertEqual(result, expected_result)
 
 if __name__ == "__main__":
     unittest.main()
