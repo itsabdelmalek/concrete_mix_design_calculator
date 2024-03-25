@@ -5,6 +5,7 @@ from app import (
     water_cement_ratio,
     max_water_content,
     cement_content,
+    total_aggregate_volume,
 )
 
 
@@ -35,12 +36,20 @@ class TestConcreteMixDesign(unittest.TestCase):
         expected_result = 177.4
         tolerance = 0.1
         self.assertAlmostEqual(result, expected_result, delta=tolerance)
-    
+
     def test_cement_content(self):
         """Test cement content calculation for exposure and water/cement ratio."""
         result = cement_content("Moderate", 0.50, 150)
         expected_result = 300
         self.assertEqual(result, expected_result)
+
+    def test_total_aggregate_volume(self):
+        """Test calculation of total coarse and fine aggregate volume."""
+        CA_vol, FA_vol = total_aggregate_volume("Zone 1", 20, 0.50, True)
+        expected_CA_vol = 0.54
+        expected_FA_vol = 0.46
+        self.assertAlmostEqual(CA_vol, expected_CA_vol, places=2)
+        self.assertAlmostEqual(FA_vol, expected_FA_vol, places=2)
 
 if __name__ == "__main__":
     unittest.main()
