@@ -81,9 +81,9 @@ def cement_flyAsh_content(exposure, w_c_r, w_content):
         c_content = min_c_c * 1.10
     flyA_content = c_content * 0.3
     while c_content - flyA_content < 270:
-            flyA_content -= c_content * 0.05
-            if flyA_content <= 0:
-                return None, None, None, None, None
+        flyA_content -= c_content * 0.05
+        if flyA_content <= 0:
+            return None, None, None, None, None
     corrected_w_c_r = w_content - c_content
     c_reduced = c_content - (c_content - flyA_content)
     flya_percentage = int((flyA_content / c_content) * 100)
