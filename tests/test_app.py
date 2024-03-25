@@ -6,6 +6,7 @@ from app import (
     max_water_content,
     cement_content,
     total_aggregate_volume,
+    cement_flyAsh_content,
 )
 
 
@@ -50,6 +51,21 @@ class TestConcreteMixDesign(unittest.TestCase):
         expected_FA_vol = 0.46
         self.assertAlmostEqual(CA_vol, expected_CA_vol, places=2)
         self.assertAlmostEqual(FA_vol, expected_FA_vol, places=2)
+
+    def test_cement_flyAsh_content(self):
+        """Test cement_flyAsh_content function for moderate exposure condition."""
+        c_content, flyA_content, c_reduced, corrected_w_c_r, flya_percentage = cement_flyAsh_content("Moderate", 0.50, 150)
+        expected_c_content = 280
+        expected_flyA_content = 50
+        expected_c_reduced = 300 - 280
+        expected_corrected_w_c_r = 150 / 330
+        expected_flya_percentage = 15
+        tolerance = 0.5
+        self.assertAlmostEqual(c_content, expected_c_content, delta=tolerance)
+        self.assertAlmostEqual(flyA_content, expected_flyA_content, delta=tolerance)
+        self.assertAlmostEqual(c_reduced, expected_c_reduced, delta=tolerance)
+        self.assertAlmostEqual(corrected_w_c_r, expected_corrected_w_c_r, delta=tolerance)
+        self.assertAlmostEqual(flya_percentage, expected_flya_percentage, delta=tolerance)
 
 if __name__ == "__main__":
     unittest.main()
